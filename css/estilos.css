@@ -32,7 +32,7 @@ input:focus{outline:2px solid var(--verde-claro);border-color:transparent}
 .auth-login{min-height:100vh;grid-template-columns:1.08fr .92fr;color:var(--verde)}
 .auth-login .auth-hero{position:relative;min-width:0;min-height:100vh;padding:0;overflow:hidden}
 .auth-login .poster{position:relative;min-height:100vh;overflow:hidden;padding:calc(clamp(2rem,6vw,5.5rem) + 1rem) clamp(2rem,6vw,5.5rem) clamp(2rem,6vw,5.5rem);text-align:center}
-.auth-login .poster-decoration{position:absolute;z-index:0;top:0;right:-4rem;width:clamp(10rem,18vw,15rem);height:clamp(11rem,20vw,15rem);object-fit:contain;pointer-events:none}
+.auth-login .poster-decoration{position:absolute;z-index:0;top:0;right:-4rem;width:clamp(14rem,24vw,22rem);height:clamp(22rem,30vw,28rem);object-fit:contain;pointer-events:none}
 .auth-login .logo{display:flex;align-items:flex-start;justify-content:center;gap:.45rem;font-size:clamp(4rem,9vw,8rem);line-height:.85;color:var(--verde)}
 .auth-login .logo,.auth-login .poster-title,.auth-login .poster-copy{position:relative;z-index:2}
 .auth-login .logo-name{display:flex;align-items:baseline;justify-content:center;white-space:nowrap;letter-spacing:-.07em}
@@ -42,7 +42,7 @@ input:focus{outline:2px solid var(--verde-claro);border-color:transparent}
 .auth-login .poster-title span{color:var(--verde)}
 .auth-login .poster-title,.auth-login .poster-copy{display:block;text-align:left}
 .auth-login .poster-copy{max-width:35rem;margin-top:.9rem;color:var(--verde);font-size:clamp(.9rem,1.3vw,1.05rem);line-height:1.4}
-.auth-login .drink{position:absolute;z-index:1;bottom:0;left:50%;display:block;width:min(55%,360px);height:auto;margin:0;border-radius:0;transform:translateX(-50%)}
+.auth-login .drink{position:absolute;z-index:1;bottom:-4rem;left:50%;display:block;width:min(70%,560px);height:auto;margin:0;border-radius:0;transform:translateX(-50%)}
 .auth-login .auth-panel{background:var(--crema);padding:clamp(1.5rem,5vw,4rem)}
 .auth-login .card{max-width:28rem;padding:clamp(2rem,4vw,3.5rem);border-radius:2rem;background:var(--blanco);box-shadow:none}
 .auth-login .card h2{color:var(--verde);font-size:clamp(1.8rem,3vw,2.4rem)}
@@ -65,4 +65,7 @@ input:focus{outline:2px solid var(--verde-claro);border-color:transparent}
 }
 @media(min-width:801px){
   .auth-login .logo,.auth-login .poster-title,.auth-login .poster-copy{top:-1.5rem}
+}
+@media(min-width:1200px) and (max-height:850px){
+  .auth-login .drink{bottom:-11.25rem}
 }
