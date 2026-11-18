@@ -30,27 +30,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Iniciar sesión | Kōcha Café</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-  <main class="auth">
-    <section class="auth-hero">
-      <div class="logo">Kōcha<small>CAFÉ</small></div>
-      <h1>Matcha.<br>Boba.<br><span>Good vibes.</span></h1>
-      <p>Bebidas premium, ingredientes reales. Hechas para tu momento.</p>
+  <main class="auth auth-login">
+    <section class="auth-hero" aria-label="Kōcha Café">
+      <div class="poster">
+        <img class="poster-decoration" src="img/bebidas/matcha-latte2.png" alt="Matcha ceremonial con batidor de bambú">
+        <h1 class="logo" aria-label="Kōcha CAFÉ">
+          <span class="logo-name"><span>Kō</span><em>cha</em></span>
+          <span class="logo-cafe">CAFÉ</span>
+        </h1>
+        <p class="poster-title">Tu momento,<br><span>en un vaso.</span></p>
+        <p class="poster-copy">Matcha, café y boba para disfrutar a tu manera.</p>
+        <img class="drink" src="img/bebidas/matcha-latte.png" alt="Latte de matcha">
+      </div>
     </section>
     <section class="auth-panel">
       <form class="card" method="post">
-        <h2>Bienvenido</h2>
-        <p class="sub">Inicia sesión para pedir tus bebidas favoritas.</p>
+        <h2>Qué gusto verte</h2>
+        <p class="sub">Inicia sesión y vuelve a tu pausa favorita.</p>
         <?php if ($error): ?><div class="msg error"><?= htmlspecialchars($error) ?></div><?php endif; ?>
         <label for="email">Correo</label>
         <input type="email" id="email" name="email" required>
         <label for="password">Contraseña</label>
         <input type="password" id="password" name="password" required>
         <button class="btn" type="submit">Entrar</button>
-        <p class="alt">¿No tienes cuenta? <a href="registro.php">Regístrate</a></p>
+        <p class="alt">¿Aún no tienes cuenta? <a href="registro.php">Regístrate</a></p>
       </form>
     </section>
   </main>
