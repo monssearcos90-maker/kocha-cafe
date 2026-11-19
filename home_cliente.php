@@ -9,11 +9,12 @@ $categorias = [
 ];
 
 
-require __DIR__ . '/includes/conexion.php';
 $productos = $pdo->query(
-    "SELECT categoria, nombre, imagen, precio FROM productos
+    "SELECT id, categoria, nombre, imagen, precio, descripcion FROM productos
      ORDER BY CASE categoria WHEN 'matcha' THEN 1 WHEN 'cafes' THEN 2 ELSE 3 END, id"
 )->fetchAll(PDO::FETCH_NUM);
+
+if (empty($_SESSION['csrf'])) { $_SESSION['csrf'] = bin2hex(random_bytes(16)); }
 
 function img_bebida($archivo) { return 'img/bebidas/' . rawurlencode($archivo); }
 ?>
@@ -70,13 +71,14 @@ function img_bebida($archivo) { return 'img/bebidas/' . rawurlencode($archivo); 
   <div class="carrusel-wrap">
     <button type="button" class="flecha" id="prev" aria-label="Anterior">‹</button>
     <div class="carrusel" id="carrusel">
-      <?php foreach ($productos as [$cat, $nombre, $archivo, $precio]): ?>
+           <?php foreach ($productos as [$id, $cat, $nombre, $archivo, $precio, $desc]): ?>
         <article class="tarjeta" data-cat="<?= $cat ?>">
           <div class="tarjeta-img"><img src="<?= img_bebida($archivo) ?>" alt="<?= htmlspecialchars($nombre) ?>" loading="lazy"></div>
           <h3><?= htmlspecialchars($nombre) ?></h3>
+          <p class="tarjeta-desc"><?= htmlspecialchars((string)$desc) ?></p>
           <div class="tarjeta-pie">
             <span>$<?= number_format($precio, 2) ?></span>
-            <button type="button" class="mas" aria-label="Agregar">+</button>
+            <button type="button" class="mas" data-id="<?= (int)$id ?>" aria-label="Agregar <?= htmlspecialchars($nombre) ?> al carrito">+</button>
           </div>
         </article>
       <?php endforeach; ?>
@@ -93,6 +95,6 @@ function img_bebida($archivo) { return 'img/bebidas/' . rawurlencode($archivo); 
   <span>© 2026 Kōcha Café</span>
   <span>Sip. Relax. Repeat.</span>
 </footer>
-
+<script>window.CSRF = '<?= htmlspecialchars($_SESSION['csrf']) ?>';</script>
 </body>
 </html>

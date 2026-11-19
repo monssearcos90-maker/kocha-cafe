@@ -225,3 +225,22 @@ a.logo{text-decoration:none}
 .opcion input:focus-visible + span{outline:2px solid var(--verde-claro);outline-offset:2px}
 .comentario{padding:.7rem 0;border-top:1px solid #eee8da;font-size:.92rem}
 .comentario:first-of-type{border-top:0}
+/* ===== CARRITO ===== */
+.tarjeta-desc{color:#6b6350;font-size:.82rem;line-height:1.35;margin:0 0 .7rem;min-height:3.2em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.badge{display:inline-block;min-width:1.4em;padding:.05em .4em;border-radius:999px;background:var(--verde);color:#fff;font-size:.7rem;text-align:center;letter-spacing:0}
+.toast{position:fixed;left:50%;bottom:1.5rem;transform:translateX(-50%);z-index:50;padding:.7rem 1.2rem;border-radius:999px;background:var(--verde);color:#fff;font-size:.9rem;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+form.inline{display:inline;margin:0}
+.cantidad{white-space:nowrap}
+.cantidad b{display:inline-block;min-width:2em;text-align:center}
+.cantidad .mas{width:28px;height:28px;font-size:1rem}
+.carrito-total{display:flex;justify-content:flex-end;align-items:baseline;gap:1rem;margin-top:1rem;padding-top:1rem;border-top:1px solid #eee8da}
+.carrito-total strong{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--verde)}
+.carrito-botones{display:flex;justify-content:flex-end;gap:.8rem;align-items:center;margin-top:1rem}
+.carrito-botones .btn-pill{border:0;cursor:pointer;font-family:inherit}
+.pedidos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.pedido{background:var(--blanco);border-radius:16px;padding:1rem;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.pedido-cab{display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap}
+.pedido-cab small{color:#8a8068}
+.pedido ul{margin:.6rem 0;padding-left:1.1rem;font-size:.92rem}
+.estado{margin-left:auto;padding:.1rem .6rem;border-radius:999px;background:#f3e6c4;color:#7a5a12;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em}
+.estado.entregado{background:#e4f0d8;color:var(--verde)}

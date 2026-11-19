@@ -15,3 +15,17 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS mensajes (
   texto VARCHAR(300) NOT NULL,
   creado_en TIMESTAMP DEFAULT NOW()
 )");
+$pdo->exec("CREATE TABLE IF NOT EXISTS pedidos (
+  id SERIAL PRIMARY KEY,
+  usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+  total NUMERIC(10,2) NOT NULL,
+  estado VARCHAR(20) NOT NULL DEFAULT 'pendiente',
+  creado_en TIMESTAMP DEFAULT NOW()
+)");
+$pdo->exec("CREATE TABLE IF NOT EXISTS pedido_items (
+  id SERIAL PRIMARY KEY,
+  pedido_id INT NOT NULL REFERENCES pedidos(id) ON DELETE CASCADE,
+  nombre VARCHAR(100) NOT NULL,
+  precio NUMERIC(8,2) NOT NULL,
+  cantidad INT NOT NULL
+)");
