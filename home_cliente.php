@@ -5,7 +5,7 @@ requiere_rol('cliente');
 $categorias = [
   'matcha' => ['nombre' => 'Matcha',        'hero' => 'matcha-latte.png'],
   'cafes'  => ['nombre' => 'Cafés',         'hero' => 'iced-coffee.png'],
-  'creamy' => ['nombre' => 'Creamy Dreams', 'hero' => 'taro-latte.png'],
+  'creamy' => ['nombre' => 'Creamy Dreams', 'hero' => 'taro-latte2.png'],
 ];
 
 // [categoría, nombre, archivo, precio]  (los precios son de ejemplo)

@@ -105,11 +105,11 @@ input:focus{outline:2px solid var(--verde-claro);border-color:transparent}
 .carrusel-wrap{position:relative}
 .carrusel{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:1rem;scrollbar-width:none}
 .carrusel::-webkit-scrollbar{display:none}
-.tarjeta{flex:0 0 240px;scroll-snap-align:start;background:var(--blanco);border-radius:20px;padding:1rem;box-shadow:0 6px 20px rgba(0,0,0,.06);transition:transform .25s}
+.tarjeta{width:240px;min-width:0;flex:0 0 240px;scroll-snap-align:start;background:var(--blanco);border-radius:20px;padding:1rem;box-shadow:0 6px 20px rgba(0,0,0,.06);transition:transform .25s}
 .tarjeta:hover{transform:translateY(-6px)}
 .tarjeta[hidden]{display:none}
-.tarjeta-img{background:var(--crema);border-radius:14px;height:240px;display:grid;place-items:center;overflow:hidden}
-.tarjeta-img img{height:92%;object-fit:contain}
+.tarjeta-img{aspect-ratio:1/1;background:var(--crema);border-radius:14px;display:grid;place-items:center;overflow:hidden}
+.tarjeta-img img{width:100%;height:100%;object-fit:cover;object-position:center}
 .tarjeta h3{font-size:1.05rem;margin:.9rem 0 .5rem}
 .tarjeta-pie{display:flex;justify-content:space-between;align-items:center}
 .tarjeta-pie span{font-weight:600}
