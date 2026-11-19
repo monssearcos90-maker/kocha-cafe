@@ -86,6 +86,7 @@ $fotos = $st->fetchAll(PDO::FETCH_ASSOC);
   <div class="camara-botones">
     <button type="button" class="btn-pill" id="abrir">Abrir cámara</button>
     <button type="button" class="btn-pill" id="tomar" disabled>Tomar foto</button>
+    <button type="button" class="btn-borde" id="apagar" hidden>Apagar cámara</button>
     <a class="btn-borde" id="descargar" download="kocha-foto.jpg" hidden>Descargar</a>
     <form method="post" id="form-guardar">
       <input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>">
@@ -119,6 +120,7 @@ $fotos = $st->fetchAll(PDO::FETCH_ASSOC);
   const video = document.getElementById('video'), canvas = document.getElementById('canvas');
   const foto = document.getElementById('foto'), aviso = document.getElementById('aviso');
   const btnAbrir = document.getElementById('abrir'), btnTomar = document.getElementById('tomar');
+  const btnApagar = document.getElementById('apagar');
   const btnDescargar = document.getElementById('descargar'), btnGuardar = document.getElementById('guardar');
   let stream = null;
 
@@ -154,7 +156,22 @@ $fotos = $st->fetchAll(PDO::FETCH_ASSOC);
     document.getElementById('imagen').value = datos;
     btnDescargar.href = datos; btnDescargar.hidden = false;
     btnGuardar.hidden = false;
+    btnApagar.hidden = false;
     aviso.textContent = '¡Foto lista! Guárdala o descárgala.';
+  });
+
+  btnApagar.addEventListener('click', () => {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      stream = null;
+    }
+    video.srcObject = null;
+    document.getElementById('placeholder').hidden = false;
+    btnTomar.disabled = true;
+    btnAbrir.disabled = false;
+    btnAbrir.textContent = 'Abrir cámara';
+    btnApagar.hidden = true;
+    aviso.textContent = 'Cámara apagada. Tu foto sigue lista para guardar o descargar.';
   });
 
   window.addEventListener('beforeunload', () => {
