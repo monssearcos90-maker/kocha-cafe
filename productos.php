@@ -58,11 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $st = $pdo->prepare('SELECT id, nombre, categoria, imagen, precio, descripcion FROM productos WHERE id = ?');
     $st->execute([(int)$_GET['editar']]);
     $fila = $st->fetch(PDO::FETCH_ASSOC);
-    if ($fila) { $form = array_map(fn($v) => $v ?? '', $fila); }
+    if ($fila) {
+    foreach ($fila as $k => $v) { $form[$k] = ($v === null) ? '' : $v; }
+}
 }
 
 $lista = $pdo->query('SELECT * FROM productos ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
-$h = fn($t) => htmlspecialchars((string)$t);
+$h = function ($t) { return htmlspecialchars((string)$t); };
 ?>
 <!DOCTYPE html>
 <html lang="es">
