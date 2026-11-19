@@ -29,15 +29,7 @@ function img_bebida($archivo) { return 'img/bebidas/' . rawurlencode($archivo); 
 </head>
 <body>
 
-<header class="nav">
-  <a href="home_cliente.php"><img class="nav-logo" src="img/logo/logo.png" alt="Kōcha Café"></a>
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#menu">Menú</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-  <a class="btn-pill" href="logout.php">Cerrar sesión</a>
-</header>
+<?php include __DIR__ . '/includes/menu.php'; ?>
 
 <section class="hero" id="inicio" data-cat="matcha">
   <div class="hero-texto">
