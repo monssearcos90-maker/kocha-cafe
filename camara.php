@@ -59,10 +59,18 @@ $fotos = $st->fetchAll(PDO::FETCH_ASSOC);
 <?php include __DIR__ . '/includes/menu.php'; ?>
 
 <main class="pagina">
-  <h1>Tómate una foto con tu bebida</h1>
-  <?php if ($mensaje): ?><div class="msg ok"><?= $h($mensaje) ?></div><?php endif; ?>
-  <p id="aviso" class="sub">Pulsa «Abrir cámara» y acepta el permiso del navegador.</p>
-
+      <section class="camara-hero">
+    <div>
+      <small>COMPARTE TU MOMENTO</small>
+      <h1>Tómate una foto con tu bebida</h1>
+      <?php if ($mensaje): ?><div class="msg ok"><?= $h($mensaje) ?></div><?php endif; ?>
+      <p id="aviso" class="sub">Pulsa «Abrir cámara» y acepta el permiso del navegador.</p>
+    </div>
+        <div class="polaroids">
+      <figure><img src="img/bebidas/matcha-latte.png" alt="Matcha latte"></figure>
+      <figure><img src="img/bebidas/taro-latte2.png" alt="Taro latte"></figure>
+    </div>
+  </section>
   <div class="camara-grid">
     <div class="visor">
       <video id="video" autoplay playsinline muted></video>

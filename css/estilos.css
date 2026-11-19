@@ -195,3 +195,13 @@ textarea{resize:vertical;min-height:70px}
 .galeria img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block}
 .galeria form{margin-top:.5rem;text-align:right}
 @media(max-width:700px){.camara-grid{grid-template-columns:1fr}}
+a.logo{text-decoration:none}
+.camara-hero{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:center;margin-bottom:1.5rem}
+.camara-hero small{letter-spacing:.2em;color:var(--verde);font-size:.7rem}
+.polaroids{display:flex;justify-content:center;gap:1rem}
+.polaroids figure{width:min(42%,170px);padding:.5rem .5rem 1.6rem;background:#fff;border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.12);animation:flota 4s ease-in-out infinite}
+.polaroids figure:first-child{transform:rotate(-6deg)}
+.polaroids figure:last-child{transform:rotate(5deg);margin-top:1.5rem;animation-delay:-2s}
+.polaroids img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;display:block}
+@keyframes flota{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@media(max-width:700px){.camara-hero{grid-template-columns:1fr}}
