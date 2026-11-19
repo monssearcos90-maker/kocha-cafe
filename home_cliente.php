@@ -1,13 +1,13 @@
 <?php
 require __DIR__ . '/includes/auth.php';
+require __DIR__ . '/includes/conexion.php';
 requiere_rol('cliente');
 
 $categorias = [
   'matcha' => ['nombre' => 'Matcha',        'hero' => 'matcha-latte.png'],
   'cafes'  => ['nombre' => 'Cafés',         'hero' => 'iced-coffee.png'],
-  'creamy' => ['nombre' => 'Creamy Dreams', 'hero' => 'taro-latte2.png'],
+  'creamy' => ['nombre' => 'Creamy Dreams', 'hero' => 'taro-latte.png'],
 ];
-
 
 $productos = $pdo->query(
     "SELECT id, categoria, nombre, imagen, precio, descripcion FROM productos
