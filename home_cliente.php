@@ -8,24 +8,12 @@ $categorias = [
   'creamy' => ['nombre' => 'Creamy Dreams', 'hero' => 'taro-latte2.png'],
 ];
 
-// [categoría, nombre, archivo, precio]  (los precios son de ejemplo)
-$productos = [
-  ['matcha', 'Blueberry Matcha',     'blueberry-matcha.png',     70],
-  ['matcha', 'Coconut Matcha',       'coconut.matcha.png',       70],
-  ['matcha', 'Mango Matcha',         'mango-matcha.png',         70],
-  ['matcha', 'Strawberry Matcha',    'strawberry-matcha.png',    75],
-  ['matcha', 'Rose Matcha',          'rose-matcha.png',          75],
-  ['cafes',  'Iced Vanilla Latte',   'Iced-vanilla-latte.png',   65],
-  ['cafes',  'Caramel Macchiato',    'caramel-macchiato.png',    68],
-  ['cafes',  'Brown Sugar Latte',    'brown-sugar-latte.png',    68],
-  ['cafes',  'Honey Cinnamon Latte', 'honey-cinnamon-latte.png', 70],
-  ['cafes',  'Spanish Latte',        'spanish-latte.png',        65],
-  ['creamy', 'Taro Latte',           'taro-latte.png',           72],
-  ['creamy', 'Pistachio Latte',      'pistachio-latte.png',      78],
-  ['creamy', 'Strawberry Cream',     'strawberry-cream.png',     72],
-  ['creamy', 'Cookies & Cream',      'cookies-&-cream.png',      75],
-  ['creamy', 'Chai Latte',           'chai-latte.png',           68],
-];
+
+require __DIR__ . '/includes/conexion.php';
+$productos = $pdo->query(
+    "SELECT categoria, nombre, imagen, precio FROM productos
+     ORDER BY CASE categoria WHEN 'matcha' THEN 1 WHEN 'cafes' THEN 2 ELSE 3 END, id"
+)->fetchAll(PDO::FETCH_NUM);
 
 function img_bebida($archivo) { return 'img/bebidas/' . rawurlencode($archivo); }
 ?>

@@ -127,3 +127,30 @@ input:focus{outline:2px solid var(--verde-claro);border-color:transparent}
   .nav nav,.flecha{display:none}
   .hero-escena{height:380px}
 }
+/* ===== ADMIN / CRUD ===== */
+.admin-nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1rem 4vw;background:var(--blanco);border-bottom:1px solid #e6dfd0}
+.admin-nav nav{display:flex;gap:1.5rem}
+.admin-nav nav a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--texto);text-decoration:none}
+.admin-nav nav a.activo{color:var(--verde);font-weight:600}
+.admin-wrap{padding:2rem 4vw 4rem}
+.admin-wrap h1{font-size:2rem;margin-bottom:1.5rem}
+.admin-grid{display:grid;grid-template-columns:340px 1fr;gap:2rem;align-items:start}
+.panel{background:var(--blanco);border-radius:20px;padding:1.5rem;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.panel h2{font-size:1.3rem;margin-bottom:.5rem}
+select,textarea{width:100%;padding:.85rem 1rem;border:1px solid #d9d2c3;border-radius:12px;background:#fff;font:inherit}
+textarea{resize:vertical;min-height:70px}
+.vista-previa{margin-top:.8rem;height:120px;border-radius:12px;background:var(--crema);overflow:hidden}
+.vista-previa img{width:100%;height:100%;object-fit:cover;display:block}
+.vista-previa img[hidden]{display:none}
+.tabla-wrap{overflow-x:auto}
+.tabla{width:100%;border-collapse:collapse}
+.tabla th{text-align:left;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#6b6350;padding:.6rem}
+.tabla td{padding:.6rem;border-top:1px solid #eee8da;vertical-align:middle}
+.tabla img{width:56px;height:56px;object-fit:cover;border-radius:10px;display:block}
+.acciones{display:flex;gap:.4rem;align-items:center}
+.acciones form{margin:0}
+.btn-mini{padding:.4rem .8rem;border-radius:999px;border:1px solid var(--verde);background:transparent;color:var(--verde);font:inherit;font-size:.75rem;cursor:pointer;text-decoration:none}
+.btn-mini:hover{background:var(--verde);color:#fff}
+.btn-mini.rojo{border-color:#a33;color:#a33}
+.btn-mini.rojo:hover{background:#a33;color:#fff}
+@media(max-width:900px){.admin-grid{grid-template-columns:1fr}}
