@@ -9,3 +9,9 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS encuestas (
   comentario TEXT,
   creado_en TIMESTAMP DEFAULT NOW()
 )");
+$pdo->exec("CREATE TABLE IF NOT EXISTS mensajes (
+  id SERIAL PRIMARY KEY,
+  usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+  texto VARCHAR(300) NOT NULL,
+  creado_en TIMESTAMP DEFAULT NOW()
+)");
