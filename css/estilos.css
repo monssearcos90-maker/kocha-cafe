@@ -213,3 +213,15 @@ a.logo{text-decoration:none}
 .video-marco iframe{width:100%;height:100%;border:0;display:block}
 .video-card h3{font-size:1.15rem;margin:.9rem 0 .3rem}
 .video-card p{color:#6b6350;font-size:.9rem}
+/* ===== ENCUESTA ===== */
+.encuesta{max-width:720px;margin-top:1rem}
+.pregunta{font-weight:600;margin:1.6rem 0 .7rem}
+.pregunta:first-of-type{margin-top:.4rem}
+.opciones{display:flex;flex-wrap:wrap;gap:.6rem}
+.opcion{display:inline-block;position:relative;margin:0;font-size:.9rem;letter-spacing:0;text-transform:none}
+.opcion input{position:absolute;opacity:0;width:auto;padding:0}
+.opcion span{display:inline-block;padding:.55rem 1.1rem;border:1px solid var(--verde);border-radius:999px;color:var(--verde);cursor:pointer;transition:.2s}
+.opcion input:checked + span{background:var(--verde);color:#fff}
+.opcion input:focus-visible + span{outline:2px solid var(--verde-claro);outline-offset:2px}
+.comentario{padding:.7rem 0;border-top:1px solid #eee8da;font-size:.92rem}
+.comentario:first-of-type{border-top:0}

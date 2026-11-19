@@ -2,6 +2,7 @@
 require __DIR__ . '/includes/conexion.php';
 require __DIR__ . '/includes/auth.php';
 requiere_rol('admin');
+require __DIR__ . '/includes/tablas.php';
 
 $h = function ($t) { return htmlspecialchars((string)$t); };
 $nombres = ['matcha' => 'Matcha', 'cafes' => 'Cafés', 'creamy' => 'Creamy Dreams'];
@@ -14,6 +15,15 @@ $ultimos   = $pdo->query('SELECT nombre, email, rol, creado_en FROM usuarios ORD
 
 $max = 1;
 foreach ($porCat as $f) { if ((int)$f['total'] > $max) { $max = (int)$f['total']; } }
+
+$totalEnc    = (int)$pdo->query('SELECT COUNT(*) FROM encuestas')->fetchColumn();
+$califProm   = (float)$pdo->query('SELECT COALESCE(AVG(calificacion), 0) FROM encuestas')->fetchColumn();
+$recomiendan = (int)$pdo->query('SELECT COUNT(*) FROM encuestas WHERE recomienda')->fetchColumn();
+$pctRec      = $totalEnc ? round($recomiendan / $totalEnc * 100) : 0;
+$favoritas   = $pdo->query('SELECT bebida, COUNT(*) AS total FROM encuestas GROUP BY bebida ORDER BY total DESC')->fetchAll(PDO::FETCH_ASSOC);
+$comentarios = $pdo->query("SELECT u.nombre, e.comentario FROM encuestas e JOIN usuarios u ON u.id = e.usuario_id WHERE e.comentario <> '' ORDER BY e.id DESC LIMIT 5")->fetchAll(PDO::FETCH_ASSOC);
+$maxFav = 1;
+foreach ($favoritas as $f) { if ((int)$f['total'] > $maxFav) { $maxFav = (int)$f['total']; } }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -71,6 +81,34 @@ foreach ($porCat as $f) { if ((int)$f['total'] > $max) { $max = (int)$f['total']
         <?php endforeach; ?>
         </tbody>
       </table>
+    </section>
+  </div>
+
+  <h2 class="subtitulo">Encuesta de satisfacción</h2>
+  <section class="stats">
+    <div class="stat"><small>Respuestas</small><strong><?= $totalEnc ?></strong></div>
+    <div class="stat"><small>Calificación promedio</small><strong><?= number_format($califProm, 1) ?>/5</strong></div>
+    <div class="stat"><small>Lo recomendarían</small><strong><?= $pctRec ?>%</strong></div>
+  </section>
+
+  <div class="dos-col">
+    <section class="panel">
+      <h2>Bebida favorita</h2>
+      <?php if (!$favoritas): ?><p class="sub">Aún no hay respuestas.</p><?php endif; ?>
+      <?php foreach ($favoritas as $f): ?>
+        <div class="barra-fila">
+          <span><?= $h($nombres[$f['bebida']] ?? $f['bebida']) ?> <b><?= (int)$f['total'] ?></b></span>
+          <div class="barra"><i style="width:<?= round(((int)$f['total'] / $maxFav) * 100) ?>%"></i></div>
+        </div>
+      <?php endforeach; ?>
+    </section>
+
+    <section class="panel">
+      <h2>Últimos comentarios</h2>
+      <?php if (!$comentarios): ?><p class="sub">Aún no hay comentarios.</p><?php endif; ?>
+      <?php foreach ($comentarios as $c): ?>
+        <p class="comentario"><b><?= $h($c['nombre']) ?>:</b> <?= $h($c['comentario']) ?></p>
+      <?php endforeach; ?>
     </section>
   </div>
 </main>

@@ -16,3 +16,4 @@ CREATE TABLE IF NOT EXISTS productos (
   etiqueta VARCHAR(20),
   creado_en TIMESTAMP DEFAULT NOW()
 );
+ALTER TABLE productos ADD COLUMN IF NOT EXISTS categoria VARCHAR(20) NOT NULL DEFAULT 'matcha';
