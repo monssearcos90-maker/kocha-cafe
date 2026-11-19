@@ -24,6 +24,14 @@ $favoritas   = $pdo->query('SELECT bebida, COUNT(*) AS total FROM encuestas GROU
 $comentarios = $pdo->query("SELECT u.nombre, e.comentario FROM encuestas e JOIN usuarios u ON u.id = e.usuario_id WHERE e.comentario <> '' ORDER BY e.id DESC LIMIT 5")->fetchAll(PDO::FETCH_ASSOC);
 $maxFav = 1;
 foreach ($favoritas as $f) { if ((int)$f['total'] > $maxFav) { $maxFav = (int)$f['total']; } }
+$ventas      = (float)$pdo->query("SELECT COALESCE(SUM(total), 0) FROM pedidos WHERE estado <> 'cancelado'")->fetchColumn();
+$pendientes  = (int)$pdo->query("SELECT COUNT(*) FROM pedidos WHERE estado = 'pendiente'")->fetchColumn();
+$totalPed    = (int)$pdo->query('SELECT COUNT(*) FROM pedidos')->fetchColumn();
+$masVendidas = $pdo->query("SELECT i.nombre, SUM(i.cantidad) AS vendidas FROM pedido_items i
+    JOIN pedidos p ON p.id = i.pedido_id WHERE p.estado <> 'cancelado'
+    GROUP BY i.nombre ORDER BY vendidas DESC LIMIT 5")->fetchAll(PDO::FETCH_ASSOC);
+$maxVend = 1;
+foreach ($masVendidas as $f) { if ((int)$f['vendidas'] > $maxVend) { $maxVend = (int)$f['vendidas']; } }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -38,6 +46,7 @@ foreach ($favoritas as $f) { if ((int)$f['total'] > $maxFav) { $maxFav = (int)$f
 <header class="admin-nav">
   <a class="logo" href="home_admin.php">Kōcha<small>CAFÉ</small></a>
   <nav>
+    <a href="pedidos.php">Pedidos</a>
     <a href="home_admin.php" class="activo">Panel</a>
     <a href="productos.php">Productos</a>
   </nav>
@@ -84,6 +93,23 @@ foreach ($favoritas as $f) { if ((int)$f['total'] > $maxFav) { $maxFav = (int)$f
     </section>
   </div>
 
+    <h2 class="subtitulo">Ventas</h2>
+  <section class="stats">
+    <div class="stat"><small>Ventas totales</small><strong>$<?= number_format($ventas, 2) ?></strong></div>
+    <div class="stat"><small>Pedidos</small><strong><?= $totalPed ?></strong></div>
+    <div class="stat"><small>Pendientes</small><strong><?= $pendientes ?></strong></div>
+  </section>
+  <section class="panel">
+    <h2>Bebidas más vendidas</h2>
+    <?php if (!$masVendidas): ?><p class="sub">Aún no hay ventas.</p><?php endif; ?>
+    <?php foreach ($masVendidas as $f): ?>
+      <div class="barra-fila">
+        <span><?= $h($f['nombre']) ?> <b><?= (int)$f['vendidas'] ?></b></span>
+        <div class="barra"><i style="width:<?= round(((int)$f['vendidas'] / $maxVend) * 100) ?>%"></i></div>
+      </div>
+    <?php endforeach; ?>
+    <p class="alt"><a href="pedidos.php">Ver pedidos →</a></p>
+  </section>
   <h2 class="subtitulo">Encuesta de satisfacción</h2>
   <section class="stats">
     <div class="stat"><small>Respuestas</small><strong><?= $totalEnc ?></strong></div>

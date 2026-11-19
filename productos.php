@@ -79,6 +79,7 @@ $h = function ($t) { return htmlspecialchars((string)$t); };
 <header class="admin-nav">
   <a class="logo" href="home_admin.php">Kōcha<small>CAFÉ</small></a>
   <nav>
+    <a href="pedidos.php">Pedidos</a>
     <a href="home_admin.php">Panel</a>
     <a href="productos.php" class="activo">Productos</a>
   </nav>

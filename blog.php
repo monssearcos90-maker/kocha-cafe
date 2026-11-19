@@ -82,6 +82,7 @@ if (isset($_GET['ajax'])) {
 <header class="admin-nav">
   <a class="logo" href="home_admin.php">Kōcha<small>CAFÉ</small></a>
   <nav>
+    <a href="pedidos.php">Pedidos</a>
     <a href="home_admin.php">Panel</a>
     <a href="productos.php">Productos</a>
     <a href="blog.php" class="activo">Blog</a>
